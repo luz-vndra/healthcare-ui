@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Patients from "../pages/Patients";
 import Analytics from "../pages/Analytics";
 import MainLayout from "../components/layout/MainLayout";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: [
       { path: "/", element: <Dashboard /> },
       { path: "/patients", element: <Patients /> },

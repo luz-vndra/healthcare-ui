@@ -56,3 +56,74 @@ src/
 * Application runs successfully with working navigation
 * Layout persists across routes
 * Foundation is ready for implementing authentication and core features in upcoming phases
+
+---
+
+## 🔐 Phase 2: Authentication
+
+In this phase, Firebase Authentication was integrated to handle user login, session management, and route protection across the application.
+
+### ⚙️ Firebase Setup
+
+* Configured Firebase using environment variables (`.env`) for better security and scalability
+* Enabled **Email/Password authentication** via Firebase Console
+* Initialized Firebase in a dedicated `firebase/config.ts` file
+
+---
+
+### 🧠 Auth State Management
+
+* Implemented a global authentication system using **React Context API**
+* Used `onAuthStateChanged` to:
+
+  * Persist user sessions across refresh
+  * Automatically update UI based on authentication state
+* Exposed `user`, `loading`, and `logout` via a custom `useAuth` hook
+
+---
+
+### 🔑 Login Flow
+
+* Built a dedicated **Login page**
+* Integrated Firebase’s `signInWithEmailAndPassword`
+* Handled:
+
+  * Form state (email/password)
+  * Error states (invalid credentials, etc.)
+  * Navigation after successful login
+
+---
+
+### 🔒 Protected Routes
+
+* Created a reusable `ProtectedRoute` component
+* Wrapped the main application layout to:
+
+  * Restrict access to authenticated users only
+  * Redirect unauthenticated users to `/login`
+* Implemented loading state handling to prevent UI flicker during auth checks
+
+---
+
+### 🚪 Logout Functionality
+
+* Implemented logout using Firebase `signOut`
+* Centralized logout logic inside AuthContext
+* Added logout action to the Navbar for easy access
+* Ensured proper redirection and session cleanup
+
+---
+
+### ✅ Key Outcomes
+
+* Secure authentication flow with session persistence
+* Clean separation of concerns (Auth logic vs UI)
+* Scalable structure for future extensions (e.g., signup, role-based access)
+* Improved UX with protected navigation and state handling
+
+---
+
+### 💡 Notes
+
+* Test users were created manually in Firebase for controlled authentication testing
+* Signup flow can be easily added if required as an extension
