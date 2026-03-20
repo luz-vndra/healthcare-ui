@@ -31,10 +31,25 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "24px",
+      }}
+    >
       <h2>Login</h2>
 
-      <form onSubmit={handleLogin}>
+      <form
+        onSubmit={handleLogin}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "400px",
+          gap: "12px",
+        }}
+      >
         <input
           type="email"
           placeholder="Email"
