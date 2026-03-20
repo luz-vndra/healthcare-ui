@@ -127,3 +127,103 @@ In this phase, Firebase Authentication was integrated to handle user login, sess
 
 * Test users were created manually in Firebase for controlled authentication testing
 * Signup flow can be easily added if required as an extension
+
+---
+
+## Phase 3: Core Pages (Dashboard & Patient Module)
+
+In this phase, the core functionality of the healthcare dashboard was implemented, focusing on building scalable UI components and enabling smooth navigation across key modules.
+
+### 📊 Dashboard
+
+A basic dashboard was created to provide an overview of the system. It includes:
+
+* KPI cards displaying:
+
+  * Total patients
+  * Average age
+  * Number of conditions tracked
+  * Dummy critical cases
+* A "Recent Patients" section to quickly view a subset of patient data
+
+The dashboard reuses the patient dataset and derives metrics dynamically, demonstrating basic data aggregation and state handling.
+
+---
+
+### 🧑‍⚕️ Patient Module
+
+This is the central feature of the application and includes:
+
+#### 1. Patient Listing
+
+* Patients are displayed using a reusable component structure
+* Data is sourced from a centralized module (`features/patients/data`)
+* Each patient item is interactive and navigates to a detail page
+
+#### 2. List ↔ Grid View Toggle
+
+* Implemented a custom toggle switch to switch between views
+* Two separate components:
+
+  * `PatientList` (vertical layout)
+  * `PatientGrid` (responsive grid layout)
+* Improves UX and demonstrates component-based design
+
+#### 3. Patient Detail Page
+
+* Dynamic routing using route parameters (`/patients/:id`)
+* Displays individual patient information
+* Handles invalid IDs gracefully
+
+---
+
+### 🧱 Component Architecture
+
+The patient feature is organized using a modular structure:
+
+features/
+patients/
+data/
+components/
+
+Key components:
+
+* `PatientCard` (reusable UI unit)
+* `PatientList`
+* `PatientGrid`
+
+This separation ensures:
+
+* Reusability
+* Maintainability
+* Scalability for future enhancements
+
+---
+
+### 🔁 Navigation & Routing
+
+* Integrated with React Router
+* Supports navigation between:
+
+  * Dashboard
+  * Patient list
+  * Patient detail view
+
+---
+
+### 💡 Key Decisions
+
+* Kept dummy data local to simulate backend responses
+* Prioritized clean component separation over complex UI
+* Focused on functionality and UX (toggle, navigation, responsiveness)
+
+---
+
+### ✅ Outcome
+
+By the end of Phase 3:
+
+* Core pages are functional
+* Patient module supports multiple views
+* Navigation flow is smooth and intuitive
+* Codebase is structured for future scalability
