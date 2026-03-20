@@ -1,5 +1,15 @@
 import { patients } from "../features/patients/data/patients";
 
+const showNotification = async () => {
+  const permission = await Notification.requestPermission();
+
+  if (permission === "granted") {
+    new Notification("New Patient Alert 🚑", {
+      body: "A new patient has been added.",
+    });
+  }
+};
+
 const Dashboard = () => {
   // simple derived stats
   const totalPatients = patients.length;
@@ -15,6 +25,17 @@ const Dashboard = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h1>Dashboard</h1>
+
+      <button
+        onClick={showNotification}
+        style={{
+          marginBottom: "16px",
+          padding: "8px 12px",
+          cursor: "pointer",
+        }}
+      >
+        Test Notification
+      </button>
 
       {/* KPI Cards */}
       <div
