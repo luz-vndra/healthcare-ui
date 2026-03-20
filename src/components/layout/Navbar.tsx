@@ -33,7 +33,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
           ☰
         </button>
 
-        <h2>Healthcare Dashboard</h2>
+        <h2>Healthcare SaaS UI Project</h2>
       </div>
 
       {/* RIGHT */}
