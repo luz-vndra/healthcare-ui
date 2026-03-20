@@ -17,7 +17,9 @@ const PatientCard = ({ patient, onClick }: Props) => {
       }}
     >
       <h3>{patient.name}</h3>
-      <p>Age: {patient.age}</p>
+      <p>
+        {patient.age}, {patient.gender}
+      </p>
       <p>{patient.condition}</p>
     </div>
   );

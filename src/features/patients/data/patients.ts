@@ -22,7 +22,7 @@ export const patients: Patient[] = [
     age: 28,
     condition: "Hypertension",
     gender: "Female",
-    appointmentDay: "Tue",
+    appointmentDay: "Mon",
   },
   {
     id: 3,
@@ -70,7 +70,7 @@ export const patients: Patient[] = [
     age: 33,
     condition: "Thyroid Disorder",
     gender: "Female",
-    appointmentDay: "Wed",
+    appointmentDay: "Thu",
   },
   {
     id: 9,
@@ -102,7 +102,7 @@ export const patients: Patient[] = [
     age: 31,
     condition: "PCOS",
     gender: "Female",
-    appointmentDay: "Tue",
+    appointmentDay: "Wed",
   },
   {
     id: 13,
