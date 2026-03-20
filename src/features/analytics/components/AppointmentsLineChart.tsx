@@ -6,11 +6,15 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import { appointmentsPerDay } from "../data/analyticsData";
 
-const AppointmentsLineChart = () => {
+type AppointmentsPerDayDatum = {
+  day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri";
+  count: number;
+};
+
+const AppointmentsLineChart = ({ data }: { data: AppointmentsPerDayDatum[] }) => {
   return (
-    <LineChart width={400} height={300} data={appointmentsPerDay}>
+    <LineChart width={400} height={300} data={data}>
       <CartesianGrid stroke="#444" strokeDasharray="3 3" />
 
       <XAxis dataKey="day" stroke="#fff" />

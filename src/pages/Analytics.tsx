@@ -1,8 +1,15 @@
 import PatientsBarChart from "../features/analytics/components/PatientsBarChart";
 import AppointmentsLineChart from "../features/analytics/components/AppointmentsLineChart";
 import GenderPieChart from "../features/analytics/components/GenderPieChart";
+import { usePatients } from "../features/patients/state/PatientsContext";
 
 const Analytics = () => {
+  const { isLoading, error, patientsByAge, appointmentsPerDay, genderDistribution } =
+    usePatients();
+
+  if (isLoading) return <div style={{ padding: "20px" }}>Loading analytics...</div>;
+  if (error) return <div style={{ padding: "20px" }}>{error}</div>;
+
   return (
     <div style={{ padding: "20px" }}>
       <h2 style={{ color: "#fff" }}>Analytics</h2>
@@ -15,15 +22,15 @@ const Analytics = () => {
         }}
       >
         <ChartCard title="Patients by Age Group">
-          <PatientsBarChart />
+          <PatientsBarChart data={patientsByAge} />
         </ChartCard>
 
         <ChartCard title="Appointments Trend (Weekly)">
-          <AppointmentsLineChart />
+          <AppointmentsLineChart data={appointmentsPerDay} />
         </ChartCard>
 
         <ChartCard title="Gender Distribution">
-          <GenderPieChart />
+          <GenderPieChart data={genderDistribution} />
         </ChartCard>
       </div>
     </div>
@@ -32,7 +39,6 @@ const Analytics = () => {
 
 export default Analytics;
 
-/* reusable wrapper */
 type ChartCardProps = {
   title: string;
   children: React.ReactNode;
@@ -56,7 +62,6 @@ const ChartCard = ({ title, children }: ChartCardProps) => {
         {title}
       </h3>
 
-      {/* Centering wrapper */}
       <div
         style={{
           display: "flex",

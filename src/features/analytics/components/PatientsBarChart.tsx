@@ -1,9 +1,13 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
-import { patientsByAge } from "../data/analyticsData";
 
-const PatientsBarChart = () => {
+type PatientsByAgeDatum = {
+  age: string;
+  count: number;
+};
+
+const PatientsBarChart = ({ data }: { data: PatientsByAgeDatum[] }) => {
   return (
-    <BarChart width={400} height={300} data={patientsByAge}>
+    <BarChart width={400} height={300} data={data}>
       <XAxis dataKey="age" stroke="#fff" />
       <YAxis stroke="#fff" />
       <Tooltip
