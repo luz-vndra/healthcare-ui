@@ -19,7 +19,6 @@ const Patients = () => {
       <h1>Patients</h1>
 
       {/* Toggle */}
-
       <div
         style={{
           display: "flex",
