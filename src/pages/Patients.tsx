@@ -18,50 +18,7 @@ const Patients = () => {
     <div>
       <h1>Patients</h1>
 
-      {/* Toggle
-      <div style={{ marginBottom: "16px" }}>
-        <button onClick={() => setView("list")}>List</button>
-        <button onClick={() => setView("grid")}>Grid</button>
-      </div> */}
-
-      {/* <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          marginBottom: "16px",
-        }}
-      >
-        <span>List</span>
-
-        <div
-          onClick={() => setView((prev) => (prev === "list" ? "grid" : "list"))}
-          style={{
-            width: "50px",
-            height: "24px",
-            background: view === "grid" ? "#4caf50" : "#ccc",
-            borderRadius: "999px",
-            position: "relative",
-            cursor: "pointer",
-            transition: "background 0.3s",
-          }}
-        >
-          <div
-            style={{
-              width: "20px",
-              height: "20px",
-              background: "#fff",
-              borderRadius: "50%",
-              position: "absolute",
-              top: "2px",
-              left: view === "grid" ? "26px" : "2px",
-              transition: "left 0.3s",
-            }}
-          />
-        </div>
-
-        <span>Grid</span>
-      </div> */}
+      {/* Toggle */}
 
       <div
         style={{
