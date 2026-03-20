@@ -1,16 +1,19 @@
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
 const MainLayout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
-    <div style={{ display: "flex" }}>
-      <Sidebar />
+    <div className="main-layout">
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-      <div style={{ flex: 1 }}>
-        <Navbar />
+      <div className="main-content">
+        <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
 
-        <main>
+        <main className="main-area">
           <Outlet />
         </main>
       </div>

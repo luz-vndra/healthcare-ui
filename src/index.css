@@ -109,3 +109,83 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+
+
+/* App layout */
+.hamburger {
+  display: none;
+}
+
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.main-area {
+  padding: 16px;
+}
+
+.sidebar {
+  width: 200px;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  padding: 16px;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* Desktop: sidebar pinned in layout, no overlay */
+@media (min-width: 769px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    transform: none;
+    transition: none;
+    z-index: 1;
+  }
+
+  .sidebar-overlay {
+    display: none;
+  }
+}
+
+/* Mobile/tablet: off-canvas sidebar with overlay */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block !important;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 20;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+}
