@@ -37,6 +37,7 @@ const Login = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "24px",
+        marginTop: "48px",
       }}
     >
       <h2>Login</h2>
