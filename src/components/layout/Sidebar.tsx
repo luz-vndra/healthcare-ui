@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface Props {
   isOpen: boolean;
@@ -6,23 +6,40 @@ interface Props {
 }
 
 const Sidebar = ({ isOpen, onClose }: Props) => {
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <>
       {isOpen && <div onClick={onClose} className="sidebar-overlay" />}
 
       <aside className={isOpen ? "sidebar open" : "sidebar"}>
-        <h3>Menu</h3>
-        <nav>
-          <Link to="/" onClick={onClose}>
-            Dashboard
+        <div className="sidebar-header">Menu</div>
+
+        <nav className="sidebar-nav">
+          <Link
+            to="/"
+            onClick={onClose}
+            className={isActive("/") ? "active" : ""}
+          >
+            🏠 Dashboard
           </Link>
-          <br />
-          <Link to="/patients" onClick={onClose}>
-            Patients
+
+          <Link
+            to="/patients"
+            onClick={onClose}
+            className={isActive("/patients") ? "active" : ""}
+          >
+            👨‍⚕️ Patients
           </Link>
-          <br />
-          <Link to="/analytics" onClick={onClose}>
-            Analytics
+
+          <Link
+            to="/analytics"
+            onClick={onClose}
+            className={isActive("/analytics") ? "active" : ""}
+          >
+            📊 Analytics
           </Link>
         </nav>
       </aside>

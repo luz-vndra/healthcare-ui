@@ -1,5 +1,11 @@
 # B2B Healthcare UI App
 
+```
+LOGIN INFO
+email: hello@mail.com
+password: 12341234
+
+
 ## 🚀 Phase 1: Project Foundation
 
 This phase focuses on setting up the core architecture of the application to ensure scalability, maintainability, and clean separation of concerns.
