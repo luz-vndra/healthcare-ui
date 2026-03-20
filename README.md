@@ -4,6 +4,7 @@
 LOGIN INFO
 email: hello@mail.com
 password: 12341234
+```
 
 
 ## 🚀 Phase 1: Project Foundation
