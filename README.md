@@ -234,3 +234,55 @@ By the end of Phase 3:
 * Patient module supports multiple views
 * Navigation flow is smooth and intuitive
 * Codebase is structured for future scalability
+
+---
+
+## State Management Updates
+
+### State Management Update (Patients + Analytics)
+
+Introduced centralized patient state so data is loaded once and shared across pages and charts.
+
+#### What changed
+
+1. **Added a global Patients context**
+- New provider/hook: [PatientsContext.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/features/patients/state/PatientsContext.tsx)
+- Exposes:
+  - `patients`
+  - `isLoading`
+  - `error`
+  - Derived analytics datasets:
+    - `patientsByAge`
+    - `genderDistribution`
+    - `appointmentsPerDay`
+
+2. **Registered provider at app root**
+- Wrapped routing with `PatientsProvider` in [main.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/main.tsx)
+
+3. **Extended patient source data model**
+- Added analytics-ready fields in [patients.ts](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/features/patients/data/patients.ts):
+  - `gender`
+  - `appointmentDay`
+
+4. **Migrated feature pages to shared state**
+- [Patients.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/pages/Patients.tsx): now consumes `patients`, `isLoading`, `error` from context
+- [PatientDetails.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/pages/PatientDetails.tsx): reads selected patient from context
+- [Analytics.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/pages/Analytics.tsx): uses derived datasets from context
+
+5. **Updated chart components to be data-driven**
+- Charts now receive `data` via props instead of importing static analytics constants:
+  - [PatientsBarChart.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/features/analytics/components/PatientsBarChart.tsx)
+  - [AppointmentsLineChart.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/features/analytics/components/AppointmentsLineChart.tsx)
+  - [GenderPieChart.tsx](/home/luzvndra/Documents/GitHub%20(luz-vndra)/healthcare-ui/src/features/analytics/components/GenderPieChart.tsx)
+
+6. **Removed obsolete static analytics file**
+- Deleted: `src/features/analytics/data/analyticsData.ts`
+
+---
+
+### Result
+
+- Single source of truth for patient data
+- No duplicate/static analytics datasets
+- Patients and Analytics stay in sync automatically
+- Clear foundation for future API integration (replace seed load in provider, keep consumers unchanged)
