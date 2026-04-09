@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { patients } from "../features/patients/data/patients";
 
 const showNotification = async () => {
@@ -21,6 +22,8 @@ const Dashboard = () => {
   const uniqueConditions = new Set(conditions).size;
 
   const recentPatients = patients.slice(0, 5);
+
+  const navigate = useNavigate();
 
   return (
     <div style={{ padding: "20px" }}>
@@ -63,7 +66,9 @@ const Dashboard = () => {
                 border: "1px solid #ccc",
                 padding: "10px",
                 borderRadius: "6px",
+                cursor: "pointer",
               }}
+              onClick={() => navigate("/patients/" + p.id)}
             >
               <strong>{p.name}</strong> — {p.condition}
             </div>
