@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -19,7 +19,7 @@ const Login = () => {
     return <Navigate to="/" />;
   }
 
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setError("");
 
