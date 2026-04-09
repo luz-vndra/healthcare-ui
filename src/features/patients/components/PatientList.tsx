@@ -1,3 +1,4 @@
+import { Stack } from "react-bootstrap";
 import { type Patient } from "../data/patients";
 import PatientCard from "./PatientCard";
 
@@ -8,15 +9,11 @@ type Props = {
 
 const PatientList = ({ patients, onSelect }: Props) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <Stack gap={3}>
       {patients.map((p) => (
-        <PatientCard
-          key={p.id}
-          patient={p}
-          onClick={() => onSelect(p.id)}
-        />
+        <PatientCard key={p.id} patient={p} onClick={() => onSelect(p.id)} />
       ))}
-    </div>
+    </Stack>
   );
 };
 

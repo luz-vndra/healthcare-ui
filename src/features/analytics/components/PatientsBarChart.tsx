@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 type PatientsByAgeDatum = {
   age: string;
@@ -7,19 +7,14 @@ type PatientsByAgeDatum = {
 
 const PatientsBarChart = ({ data }: { data: PatientsByAgeDatum[] }) => {
   return (
-    <BarChart width={400} height={300} data={data}>
-      <XAxis dataKey="age" stroke="#fff" />
-      <YAxis stroke="#fff" />
-      <Tooltip
-        contentStyle={{
-          backgroundColor: "#222",
-          border: "none",
-          color: "#fff",
-        }}
-        labelStyle={{ color: "#fff" }}
-      />
-      <Bar dataKey="count" fill="#fff" />
-    </BarChart>
+    <ResponsiveContainer width="100%" height={320}>
+      <BarChart data={data}>
+        <XAxis dataKey="age" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="count" fill="#0d6efd" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 

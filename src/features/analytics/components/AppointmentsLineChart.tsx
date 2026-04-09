@@ -5,6 +5,7 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 
 type AppointmentsPerDayDatum = {
@@ -14,28 +15,15 @@ type AppointmentsPerDayDatum = {
 
 const AppointmentsLineChart = ({ data }: { data: AppointmentsPerDayDatum[] }) => {
   return (
-    <LineChart width={400} height={300} data={data}>
-      <CartesianGrid stroke="#444" strokeDasharray="3 3" />
-
-      <XAxis dataKey="day" stroke="#fff" />
-      <YAxis stroke="#fff" />
-
-      <Tooltip
-        contentStyle={{
-          backgroundColor: "#222",
-          border: "none",
-          color: "#fff",
-        }}
-        labelStyle={{ color: "#fff" }}
-      />
-
-      <Line
-        type="monotone"
-        dataKey="count"
-        stroke="#60A5FA"
-        strokeWidth={2}
-      />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={320}>
+      <LineChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="day" />
+        <YAxis />
+        <Tooltip />
+        <Line type="monotone" dataKey="count" stroke="#0d6efd" strokeWidth={2} />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 

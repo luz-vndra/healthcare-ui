@@ -1,39 +1,33 @@
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
 
 type GenderDistributionDatum = {
   name: "Male" | "Female" | "Other";
   value: number;
 };
 
-const COLORS = ["#60A5FA", "#4ADE80", "#F472B6"];
+const COLORS = ["#0d6efd", "#20c997", "#ffc107"];
 
 const GenderPieChart = ({ data }: { data: GenderDistributionDatum[] }) => {
   return (
-    <PieChart width={400} height={300}>
-      <Pie
-        data={data}
-        dataKey="value"
-        nameKey="name"
-        cx="50%"
-        cy="50%"
-        outerRadius={100}
-        label
-      >
-        {data.map((_, index) => (
-          <Cell key={index} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-
-      <Tooltip
-        contentStyle={{
-          backgroundColor: "#222",
-          border: "none",
-          color: "#fff",
-        }}
-      />
-
-      <Legend />
-    </PieChart>
+    <ResponsiveContainer width="100%" height={320}>
+      <PieChart>
+        <Pie
+          data={data}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={110}
+          label
+        >
+          {data.map((entry, index) => (
+            <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
   );
 };
 
