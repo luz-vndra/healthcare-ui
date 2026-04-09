@@ -1,3 +1,4 @@
+import { Card } from "react-bootstrap";
 import { type Patient } from "../data/patients";
 
 type Props = {
@@ -7,21 +8,15 @@ type Props = {
 
 const PatientCard = ({ patient, onClick }: Props) => {
   return (
-    <div
-      onClick={onClick}
-      style={{
-        border: "1px solid #ccc",
-        padding: "12px",
-        borderRadius: "8px",
-        cursor: "pointer",
-      }}
-    >
-      <h3>{patient.name}</h3>
-      <p>
-        {patient.age}, {patient.gender}
-      </p>
-      <p>{patient.condition}</p>
-    </div>
+    <Card onClick={onClick} className="cursor-pointer h-100 patient-card" role="button">
+      <Card.Body>
+        <Card.Title className="mb-1">{patient.name}</Card.Title>
+        <Card.Text className="mb-1 text-muted">
+          {patient.age}, {patient.gender}
+        </Card.Text>
+        <Card.Text className="mb-0">{patient.condition}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 

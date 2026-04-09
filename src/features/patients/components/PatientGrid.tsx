@@ -1,3 +1,4 @@
+import { Col, Row } from "react-bootstrap";
 import { type Patient } from "../data/patients";
 import PatientCard from "./PatientCard";
 
@@ -8,21 +9,13 @@ type Props = {
 
 const PatientGrid = ({ patients, onSelect }: Props) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-        gap: "16px",
-      }}
-    >
+    <Row className="g-3">
       {patients.map((p) => (
-        <PatientCard
-          key={p.id}
-          patient={p}
-          onClick={() => onSelect(p.id)}
-        />
+        <Col key={p.id} xs={12} sm={6} lg={4} xl={3}>
+          <PatientCard patient={p} onClick={() => onSelect(p.id)} />
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 };
 

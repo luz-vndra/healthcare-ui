@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useNavigate, Navigate } from "react-router-dom";
+import { Alert, Button, Card, Form } from "react-bootstrap";
 
 import { useAuth } from "../auth/AuthContext";
 
@@ -18,7 +19,7 @@ const Login = () => {
     return <Navigate to="/" />;
   }
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
@@ -31,44 +32,32 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "24px",
-        marginTop: "48px",
-      }}
-    >
-      <h2>Login</h2>
+    <div className="d-flex justify-content-center py-5">
+      <Card className="w-100" style={{ maxWidth: "420px" }}>
+        <Card.Body>
+          <Card.Title className="mb-4">Login</Card.Title>
 
-      <form
-        onSubmit={handleLogin}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "400px",
-          gap: "12px",
-        }}
-      >
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <Form onSubmit={handleLogin} className="d-flex flex-column gap-3">
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-        <button type="submit">Login</button>
-      </form>
+            <Button type="submit">Login</Button>
+          </Form>
 
-      {error && <p>{error}</p>}
+          {error ? <Alert variant="danger" className="mt-3 mb-0">{error}</Alert> : null}
+        </Card.Body>
+      </Card>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { Alert, Card, Spinner, Stack } from "react-bootstrap";
 import PatientsBarChart from "../features/analytics/components/PatientsBarChart";
 import AppointmentsLineChart from "../features/analytics/components/AppointmentsLineChart";
 import GenderPieChart from "../features/analytics/components/GenderPieChart";
@@ -7,20 +8,22 @@ const Analytics = () => {
   const { isLoading, error, patientsByAge, appointmentsPerDay, genderDistribution } =
     usePatients();
 
-  if (isLoading) return <div style={{ padding: "20px" }}>Loading analytics...</div>;
-  if (error) return <div style={{ padding: "20px" }}>{error}</div>;
+  if (isLoading) {
+    return (
+      <div className="d-flex align-items-center gap-2">
+        <Spinner size="sm" />
+        <span>Loading analytics...</span>
+      </div>
+    );
+  }
+
+  if (error) return <Alert variant="danger">{error}</Alert>;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2 style={{ color: "#fff" }}>Analytics</h2>
+    <div>
+      <h1 className="h3 mb-4">Analytics</h1>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-        }}
-      >
+      <Stack gap={3}>
         <ChartCard title="Patients by Age Group">
           <PatientsBarChart data={patientsByAge} />
         </ChartCard>
@@ -32,7 +35,7 @@ const Analytics = () => {
         <ChartCard title="Gender Distribution">
           <GenderPieChart data={genderDistribution} />
         </ChartCard>
-      </div>
+      </Stack>
     </div>
   );
 };
@@ -46,30 +49,9 @@ type ChartCardProps = {
 
 const ChartCard = ({ title, children }: ChartCardProps) => {
   return (
-    <div
-      style={{
-        background: "#111",
-        padding: "16px",
-        borderRadius: "10px",
-      }}
-    >
-      <h3
-        style={{
-          color: "#fff",
-          marginBottom: "12px",
-        }}
-      >
-        {title}
-      </h3>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        {children}
-      </div>
-    </div>
+    <Card>
+      <Card.Header className="fw-semibold">{title}</Card.Header>
+      <Card.Body className="chart-wrapper">{children}</Card.Body>
+    </Card>
   );
 };

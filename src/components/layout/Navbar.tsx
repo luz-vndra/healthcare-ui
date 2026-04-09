@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Button, Container, Navbar as BsNavbar } from "react-bootstrap";
 import { useAuth } from "../../auth/AuthContext";
 
 const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
@@ -11,37 +12,27 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
   };
 
   return (
-    <div
-      style={{
-        padding: "10px",
-        borderBottom: "1px solid #ccc",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      {/* LEFT */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <button
+    <BsNavbar bg="white" expand="lg" className="border-bottom">
+      <Container fluid>
+        <Button
+          variant="outline-secondary"
+          className="d-lg-none me-2"
           onClick={onMenuClick}
-          style={{
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-          className="hamburger"
+          aria-label="Open menu"
         >
-          ☰
-        </button>
-
-        <h2>Healthcare SaaS UI Project</h2>
-      </div>
-
-      {/* RIGHT */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <span>{user?.email}</span>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    </div>
+          Menu
+        </Button>
+        <BsNavbar.Brand className="fw-semibold">
+          Healthcare SaaS UI Project
+        </BsNavbar.Brand>
+        <div className="d-flex align-items-center gap-3 ms-auto">
+          <span className="text-muted small">{user?.email}</span>
+          <Button variant="outline-danger" size="sm" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
+      </Container>
+    </BsNavbar>
   );
 };
 
